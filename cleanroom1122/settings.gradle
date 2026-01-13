@@ -1,0 +1,44 @@
+pluginManagement {
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == 'com.gtnewhorizons.retrofuturagradle') {
+                useModule("com.gtnewhorizons.retrofuturagradle:RetroFuturaGradle:${requested.version}")
+            }
+        }
+    }
+    repositories {
+        maven {
+            // RetroFuturaGradle
+            name 'GTNH Maven'
+            url 'https://nexus.gtnewhorizons.com/repository/public/'
+            mavenContent {
+                includeGroup 'com.gtnewhorizons'
+                includeGroup 'com.gtnewhorizons.retrofuturagradle'
+            }
+        }
+        maven {
+            name 'GTNH Releases'
+            url 'https://nexus.gtnewhorizons.com/repository/maven-releases/'
+            mavenContent {
+                includeGroup 'com.gtnewhorizons'
+                includeGroup 'com.gtnewhorizons.retrofuturagradle'
+            }
+        }
+        maven {
+            name 'CleanroomMC'
+            url 'https://maven.cleanroommc.com'
+        }
+        gradlePluginPortal()
+        mavenCentral()
+        mavenLocal()
+    }
+}
+
+plugins {
+    // Automatic toolchain provisioning
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+
+// Due to an IntelliJ bug, this has to be done
+// rootProject.name = archives_base_name
+rootProject.name = rootProject.projectDir.getName()
