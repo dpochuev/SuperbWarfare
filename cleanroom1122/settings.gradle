@@ -1,4 +1,11 @@
 pluginManagement {
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == 'com.gtnewhorizons.retrofuturagradle') {
+                useModule("com.gtnewhorizons.retrofuturagradle:RetroFuturaGradle:${requested.version}")
+            }
+        }
+    }
     repositories {
         maven {
             // RetroFuturaGradle
@@ -8,6 +15,18 @@ pluginManagement {
                 includeGroup 'com.gtnewhorizons'
                 includeGroup 'com.gtnewhorizons.retrofuturagradle'
             }
+        }
+        maven {
+            name 'GTNH Releases'
+            url 'https://nexus.gtnewhorizons.com/repository/maven-releases/'
+            mavenContent {
+                includeGroup 'com.gtnewhorizons'
+                includeGroup 'com.gtnewhorizons.retrofuturagradle'
+            }
+        }
+        maven {
+            name 'CleanroomMC'
+            url 'https://maven.cleanroommc.com'
         }
         gradlePluginPortal()
         mavenCentral()
